@@ -152,13 +152,13 @@ int main(int argc, char* argv[]) {
 					uinput_gpad_write(&uinp_gpads[0], BTN_TL,
 							xarcdev.ev[ctr].value > 0, EV_KEY);
 					break;
-				case KEY_5:
+				case KEY_V:
 					uinput_gpad_write(&uinp_gpads[0], BTN_TR,
 							xarcdev.ev[ctr].value > 0, EV_KEY);
 					break;
 				case KEY_1:
 					/* handle combination */
-					if (keyStates[KEY_3] && xarcdev.ev[ctr].value) {
+					if (keyStates[KEY_P] && xarcdev.ev[ctr].value) {
 						uinput_kbd_write(&uinp_kbd, KEY_TAB, 1, EV_KEY);
 						uinput_kbd_sleep();
 						uinput_kbd_write(&uinp_kbd, KEY_TAB, 0, EV_KEY);
@@ -175,7 +175,7 @@ int main(int argc, char* argv[]) {
 					} else
 						combo--;
 					break;
-				case KEY_3:
+				case KEY_P:
 					/* it's a key down, ignore */
 					if (xarcdev.ev[ctr].value)
 						continue;
@@ -186,6 +186,10 @@ int main(int argc, char* argv[]) {
 					} else
 						combo--;
 
+					break;
+				case KEY_5:
+					uinput_gpad_write(&uinp_gpads[0], BTN_MODE, 
+							xarcdev.ev[ctr].value > 0, EV_KEY);
 					break;
 
 					/* joystick */
@@ -228,25 +232,17 @@ int main(int argc, char* argv[]) {
 					uinput_gpad_write(&uinp_gpads[1], BTN_X,
 							xarcdev.ev[ctr].value > 0, EV_KEY);
 					break;
-				case KEY_E:
+				case KEY_I:
 					uinput_gpad_write(&uinp_gpads[1], BTN_Y,
 							xarcdev.ev[ctr].value > 0, EV_KEY);
 					break;
-				case KEY_LEFTBRACE:
+				case KEY_K:
 					uinput_gpad_write(&uinp_gpads[1], BTN_Z,
-							xarcdev.ev[ctr].value > 0, EV_KEY);
-					break;
-				case KEY_RIGHTBRACE:
-					uinput_gpad_write(&uinp_gpads[1], BTN_TL,
-							xarcdev.ev[ctr].value > 0, EV_KEY);
-					break;
-				case KEY_6:
-					uinput_gpad_write(&uinp_gpads[1], BTN_TR,
 							xarcdev.ev[ctr].value > 0, EV_KEY);
 					break;
 				case KEY_2:
 					/* handle combination */
-					if (keyStates[KEY_4] && xarcdev.ev[ctr].value) {
+					if (keyStates[KEY_TAB] && xarcdev.ev[ctr].value) {
 						uinput_kbd_write(&uinp_kbd, KEY_ESC, 1, EV_KEY);
 						uinput_kbd_sleep();
 						uinput_kbd_write(&uinp_kbd, KEY_ESC, 0, EV_KEY);
@@ -263,7 +259,7 @@ int main(int argc, char* argv[]) {
 					} else
 						combo--;
 					break;
-				case KEY_4:
+				case KEY_TAB:
 					/* it's a key down, ignore */
 					if (xarcdev.ev[ctr].value)
 						continue;
@@ -274,6 +270,10 @@ int main(int argc, char* argv[]) {
 					} else
 						combo--;
 
+					break;
+				case KEY_ESC:
+					uinput_gpad_write(&uinp_gpads[1], BTN_MODE, 
+							xarcdev.ev[ctr].value > 0, EV_KEY);
 					break;
 
 					/* joystick */
